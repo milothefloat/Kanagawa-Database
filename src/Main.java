@@ -15,7 +15,7 @@ public class Main {
 		// Application start point
 
 		Scanner s = new Scanner(System.in);
-		System.out.println("KanaDB started!");
+		System.out.println("Kanagawa-Database started!");
 		
 		while (running) {
 			System.out.print("KanaDB-" + "$> "); // Adds a custom name to the session.
@@ -67,7 +67,7 @@ public class Main {
 		
 		
 		// Application exit point
-		Database.say("Database session has ended!");
+		Database.say("Kanagawa-Database session has ended!");
 		s.close();
 		
 		
