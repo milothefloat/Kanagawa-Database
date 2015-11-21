@@ -15,10 +15,10 @@ public class Main {
 		// Application start point
 
 		Scanner s = new Scanner(System.in);
-		System.out.println("Database started! ");
+		System.out.println("Database started!");
 
 		while (running) {
-			System.out.print("Database>");
+			System.out.print("Database-$>");
 			String input = s.nextLine();
 
 			// if the user entered the command "end" the application loop will break
