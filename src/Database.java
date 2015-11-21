@@ -1,3 +1,4 @@
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class Database {
@@ -7,6 +8,22 @@ public class Database {
 
 	public static void say(Object message) {
 		System.out.println("  Database: " + message + Color.White);
+	}
+
+	public static void print(Object message) {
+		System.out.print(message + Color.White.getColor());
+	}
+
+	public static void println(Object message, Color endColor) {
+
+		System.out.println(message + endColor.getColor());
+
+	}
+
+	public static void println(Object message) {
+
+		System.out.println(message + Color.White.getColor());
+
 	}
 
 	/**
@@ -19,16 +36,26 @@ public class Database {
 
 	}
 
-	public void setCommand(String command) {
-
-		this.command = command;
-
+	public Database(InputStream in) {
+		input = new Scanner(in);
 	}
 
-	public boolean hasParam() {
+	/**
+	 * This string will be removed from the input
+	 * */
+	public void setCommand(String command) {
+		this.command = command;
+		Scanner a = new Scanner("");
+	}
 
+	public boolean hasNext() {
 		if (input.hasNext()) return true;
+		//You don't need an else statement here so i just put this comment.
+		return false;
+	}
 
+	public boolean hasNextLine() {
+		if (input.hasNextLine()) return true;
 		//You don't need an else statement here so i just put this comment.
 		return false;
 	}
@@ -39,17 +66,22 @@ public class Database {
 
 	}
 
-	public String nextParam() {
+	public String next() {
 		if (input != null) {
 			if (input.hasNext()) return input.next();
 		}
 		return null;
 	}
-	
-	public void close () {
-		
+
+	public String nextLine() {
+		if (input != null) {
+			if (input.hasNext()) return input.nextLine();
+		}
+		return null;
+	}
+
+	public void close() {
 		input.close();
-		
 	}
 
 }

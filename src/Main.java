@@ -15,25 +15,30 @@ public class Main {
 
 	public Main() {
 		// Application start point
-		Scanner s = new Scanner(System.in);
+
+		Database sys_in = new Database(System.in);
+
 		Database.say(Color.Green + "Kanagawa-Database started!");
 
-		while (running) {
-			System.out.print("Kanagawa-Database>"); // Adds a custom name to the session.
-			String input = s.nextLine();
+		Database.println("", Color.Black);
 
-			// if the user entered the command "end" the application loop will break
-			if (input.toLowerCase().startsWith("end")) {
+		while (running) {
+			Database.print("Kanagawa-Database>");
+
+			String input = sys_in.nextLine();
+
+			// if the user entered the end command the application loop will break
+			if (input.toLowerCase().startsWith(Words.English.End)) {
 				running = false;
 			}
 
 			// if the user enters the command "create" the application will create a file with the parameters provided
-			else if (input.toLowerCase().startsWith("create")) {
-				createFile(input);
+			else if (input.toLowerCase().startsWith(Words.English.Create)) {
+				new DatabaseFile(input);
 			}
 
 			// if the user enters the command "help" they will get a list of all the current commands
-			else if (input.toLowerCase().startsWith("help")) {
+			else if (input.toLowerCase().startsWith(Words.English.Help)) {
 				System.out.println("-------------------------");
 				System.out.println("      end to exit database");
 				System.out.println("      create to create a file");
@@ -51,11 +56,11 @@ public class Main {
 				ftpc(input);
 			}
 
-			else if (input.toLowerCase().startsWith("ping")) {
+			else if (input.toLowerCase().startsWith(Words.English.Ping)) {
 				ping(input);
 			}
 
-			else if (input.toLowerCase().startsWith("hello")) {
+			else if (input.toLowerCase().startsWith(Words.English.Hello)) {
 				System.out.println("Hello.");
 
 			}
@@ -65,7 +70,7 @@ public class Main {
 				td();
 			}
 
-			else if (input.toLowerCase().startsWith("ram")) {
+			else if (input.toLowerCase().startsWith(Words.English.Ram)) {
 
 				ram();
 
@@ -75,7 +80,7 @@ public class Main {
 
 		// Application exit point
 		Database.say("Kanagawa-Database session has ended!");
-		s.close();
+		sys_in.close();
 
 	}
 
@@ -188,55 +193,8 @@ public class Main {
 		Database.say(System.getProperty("user.dir"));
 	}
 
-	/**
-	 * Used by the create file command
-	 */
-	private void createFile(String input) {
-		String file_name = "file1";
-		String file_input = "";
-
-		//Scanner n = new Scanner(input.substring("create ".length()));
-		
-		Database db_in = new Database("create", input);
-		
-		while (db_in.hasParam()) {
-			file_name = db_in.nextParam();
-
-			try {
-				String param3 = db_in.nextParam();
-				if (param3.toLowerCase().startsWith("\"")) {
-					file_input = param3.substring(1);
-					while (db_in.hasParam()) {
-						file_input += " " + db_in.nextParam();
-					}
-					if (file_input.endsWith("\"")) {
-						file_input = file_input.substring(0, file_input.length() - 1);
-					} else {
-						file_input = "Hello!  I was created with the name " + file_name;
-					}
-				}
-			} catch (Exception e) {
-
-			}
-
-			break;
-		}
-
-		try {
-			PrintWriter out = new PrintWriter(file_name, "UTF-8");
-			out.println(file_input);
-			out.close();
-			Database.say("Created file with name : " + file_name + (file_input.length() > 0 ? (" , with input : " + file_input) : ""));
-		} catch (Exception e) {
-			Database.say(Color.Red + "Error " + file_input + " " + file_name );
-		}
-		db_in.close();
-	}
-
 	public static void main(String[] args) {
-
 		new Main();
-
 	}
 
 }
