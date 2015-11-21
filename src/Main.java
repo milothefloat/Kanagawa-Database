@@ -158,7 +158,9 @@ public class Main {
 						Database.say("Response time was : " + (endTime - startTime) + "ms");
 					}
 				} catch (IOException e) {
-					e.printStackTrace();
+					
+					Database.say("Sorry but I cant do that");
+					
 				}
 			}
 			n.close();
