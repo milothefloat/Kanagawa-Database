@@ -1,0 +1,9 @@
+import org.apache.commons.net.ftp.FTPClient;
+
+public class FTP {
+	public FTP (FTPClient ftpClient) {
+		
+		
+		
+	}
+}

@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+import org.apache.commons.net.ftp.FTPClient;
+
+public class FTP {
+	public FTP (FTPClient ftpClient) {
+		Scanner s = new Scanner(System.in);
+		
+		
+	}
+}

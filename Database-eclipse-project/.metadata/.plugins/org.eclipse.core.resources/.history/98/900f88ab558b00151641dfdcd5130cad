@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Input {
+	protected String rawInput;
+	
+	public String get() {
+		Scanner s = new Scanner(rawInput);
+		
+		return s;
+	}
+
+	public void setRawInput(String rawInput) {
+		this.rawInput = rawInput;
+	}
+
+	public Input(String ri) {
+		
+		this.rawInput = ri;
+		
+	}
+}

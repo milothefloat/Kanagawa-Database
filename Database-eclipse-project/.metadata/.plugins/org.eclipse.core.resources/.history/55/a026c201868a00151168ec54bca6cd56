@@ -1,0 +1,65 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.Scanner;
+
+public class main2 {
+
+	public boolean running = true;
+
+	public main() {
+
+		Scanner s = new Scanner(System.in);
+		System.out.println("Database started!");
+
+		while (running) {
+			System.out.print("> ");
+
+			String input = s.next();
+
+			if (input.toLowerCase().equals("end"))
+				running = false;
+
+			else if (input.toLowerCase().equals("hello"))
+				System.out.println("Hello, World!");
+
+                        else if (input.toLowerCase().equals("Create Table"))
+				System.out.println("Creating Table...");
+
+ 			if (input.toLowerCase().equals("List"))
+				System.out.println("==TABLE -- Demo==");
+				System.out.println("");
+				System.out.println("|-======= ID ========== Name =============== Type ============ Date Added/Modified ==-|");
+				System.out.println("|-       01        TRANSCENDANCE-DVD      Stock.item               10//11//10        -|");
+                System.out.println("|-===================================================================================-|");
+
+			if (input.toLowerCase().startsWith("create ")) {
+
+				PrintWriter writer;
+				try {
+					writer = new PrintWriter(input.substring(7, input.length()), "UTF-8");
+					writer.println("==TABLES==");
+					writer.println("**********");
+					writer.close();
+					System.out.println("Created file named : " + input.substring(7, input.length()));
+				} catch (FileNotFoundException | UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				
+				
+			}
+
+		}
+
+		System.out.println("Database ended!");
+
+	}
+
+	public static void main(String[] args) {
+
+		new main();
+
+	}
+
+}
+

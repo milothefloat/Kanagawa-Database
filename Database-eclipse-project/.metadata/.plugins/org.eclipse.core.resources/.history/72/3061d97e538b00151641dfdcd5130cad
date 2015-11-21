@@ -1,0 +1,10 @@
+
+public class Input {
+	String rawInput;
+	
+	public Input(String ri) {
+		
+		this.rawInput = ri;
+		
+	}
+}

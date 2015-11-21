@@ -1,0 +1,19 @@
+
+public class Input {
+	protected String rawInput;
+	
+	public String get() {
+		
+		return rawInput;
+	}
+
+	public void setRawInput(String rawInput) {
+		this.rawInput = rawInput;
+	}
+
+	public Input(String ri) {
+		
+		this.rawInput = ri;
+		
+	}
+}

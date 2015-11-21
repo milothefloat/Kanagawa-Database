@@ -1,0 +1,6 @@
+
+public class Database {
+	public static void sayln(String message){
+		System.out.println("Database: " + message);
+	}
+}

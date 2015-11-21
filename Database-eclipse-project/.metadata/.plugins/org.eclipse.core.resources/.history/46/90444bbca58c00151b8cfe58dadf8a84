@@ -1,0 +1,8 @@
+
+public class Database {
+	public static void say(String t){
+		
+		System.out.println("Database: " + );
+		
+	}
+}
