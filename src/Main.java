@@ -1,10 +1,8 @@
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.lang.management.ManagementFactory;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
-
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
@@ -19,8 +17,6 @@ public class Main {
 		Database sys_in = new Database(System.in);
 
 		Database.say(Color.Green + "Kanagawa-Database started!");
-
-		Database.println("", Color.Black);
 
 		while (running) {
 			Database.print("Kanagawa-Database>");
