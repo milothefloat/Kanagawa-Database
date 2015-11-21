@@ -1,8 +1,10 @@
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.management.ManagementFactory;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
+
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
@@ -13,12 +15,11 @@ public class Main {
 
 	public Main() {
 		// Application start point
-
 		Scanner s = new Scanner(System.in);
-		System.out.println("Kanagawa-Database started!");
-		
+		Database.say(Color.Green + "Kanagawa-Database started!");
+
 		while (running) {
-			System.out.print("KanaDB-" + "$> "); // Adds a custom name to the session.
+			System.out.print("Kanagawa-Database>"); // Adds a custom name to the session.
 			String input = s.nextLine();
 
 			// if the user entered the command "end" the application loop will break
@@ -34,11 +35,12 @@ public class Main {
 			// if the user enters the command "help" they will get a list of all the current commands
 			else if (input.toLowerCase().startsWith("help")) {
 				System.out.println("-------------------------");
-				System.out.println("  end to exit database");
-				System.out.println("  create to create a file");
-				System.out.println("  hello for a response");
-				System.out.println("  td for current directory");
-				System.out.println("  ftpc SERVER USERNAME PASSWORD");
+				System.out.println("      end to exit database");
+				System.out.println("      create to create a file");
+				System.out.println("      hello for a response");
+				System.out.println("      td for current directory");
+				System.out.println("      ftpc SERVER USERNAME PASSWORD");
+				System.out.println("(WIP) ram gets installed ram");
 				System.out.println("-------------------------");
 
 				// Scanner n = new Scanner(input.substring("help ".length(), input.length()));
@@ -52,10 +54,10 @@ public class Main {
 			else if (input.toLowerCase().startsWith("ping")) {
 				ping(input);
 			}
-			
-			else if (input.toLowerCase().startsWith("Hello")) {
+
+			else if (input.toLowerCase().startsWith("hello")) {
 				System.out.println("Hello.");
-				
+
 			}
 
 			// if the user enters the command "td" they will be told the current directory
@@ -63,14 +65,24 @@ public class Main {
 				td();
 			}
 
+			else if (input.toLowerCase().startsWith("ram")) {
+
+				ram();
+
+			}
+
 		}
-		
-		
+
 		// Application exit point
 		Database.say("Kanagawa-Database session has ended!");
 		s.close();
-		
-		
+
+	}
+
+	private void ram() {
+		long memorySize = ((com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize();
+		memorySize = memorySize / (1024 * 1024 * 1024);
+		Database.say("You have about " + memorySize + "GB of RAM");
 	}
 
 	private void showServerReply(FTPClient ftpClient) {
@@ -91,8 +103,7 @@ public class Main {
 				parm1 = n.next();
 				parm2 = n.next();
 				parm3 = n.next();
-				if (n.hasNext())
-					parm4 = n.next();
+				if (n.hasNext()) parm4 = n.next();
 
 				if (parm1.length() > 0 && parm2.length() > 0 && parm3.length() > 0) {
 					parm4.trim();
@@ -154,13 +165,15 @@ public class Main {
 					final long endTime = System.currentTimeMillis();
 					if (urlConn.getResponseCode() == HttpURLConnection.HTTP_OK) {
 						// Database.say("Time (ms) : " + (endTime - startTime));
-						Database.say("Ping to " + parm1 + " was success!");
+						Database.say(Color.Green + "Success!");
+						Database.say("Pinged to " + parm1);
 						Database.say("Response time was : " + (endTime - startTime) + "ms");
 					}
 				} catch (IOException e) {
-					
-					Database.say("What was that again?");
-					
+
+					Database.say(Color.Red + "Error you entered : " + parm1);
+					Database.say("Command usage : ping https://example.com");
+
 				}
 			}
 			n.close();
