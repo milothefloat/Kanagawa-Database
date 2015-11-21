@@ -159,7 +159,7 @@ public class Main {
 					}
 				} catch (IOException e) {
 					
-					Database.say("Sorry but I cant do that");
+					Database.say("What was that again?");
 					
 				}
 			}
