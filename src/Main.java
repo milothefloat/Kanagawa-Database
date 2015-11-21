@@ -18,7 +18,7 @@ public class Main {
 		System.out.println("KanaDB started!");
 		
 		while (running) {
-			System.out.print("KanaDB-" + "$>"); // Adds a custom name to the session.
+			System.out.print("KanaDB-" + "$> "); // Adds a custom name to the session.
 			String input = s.nextLine();
 
 			// if the user entered the command "end" the application loop will break
