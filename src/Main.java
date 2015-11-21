@@ -195,16 +195,19 @@ public class Main {
 		String file_name = "file1";
 		String file_input = "";
 
-		Scanner n = new Scanner(input.substring("create ".length()));
-		while (n.hasNext()) {
-			file_name = n.next();
+		//Scanner n = new Scanner(input.substring("create ".length()));
+		
+		Database db_in = new Database("create", input);
+		
+		while (db_in.hasParam()) {
+			file_name = db_in.nextParam();
 
 			try {
-				String param3 = n.next();
+				String param3 = db_in.nextParam();
 				if (param3.toLowerCase().startsWith("\"")) {
 					file_input = param3.substring(1);
-					while (n.hasNext()) {
-						file_input += " " + n.next();
+					while (db_in.hasParam()) {
+						file_input += " " + db_in.nextParam();
 					}
 					if (file_input.endsWith("\"")) {
 						file_input = file_input.substring(0, file_input.length() - 1);
@@ -225,9 +228,9 @@ public class Main {
 			out.close();
 			Database.say("Created file with name : " + file_name + (file_input.length() > 0 ? (" , with input : " + file_input) : ""));
 		} catch (Exception e) {
-			e.printStackTrace();
+			Database.say(Color.Red + "Error " + file_input + " " + file_name );
 		}
-		n.close();
+		db_in.close();
 	}
 
 	public static void main(String[] args) {
