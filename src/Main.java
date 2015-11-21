@@ -43,9 +43,6 @@ public class Main {
 				System.out.println("      ftpc SERVER USERNAME PASSWORD");
 				System.out.println("(WIP) ram gets installed ram");
 				System.out.println("-------------------------");
-
-				// Scanner n = new Scanner(input.substring("help ".length(), input.length()));
-
 			}
 
 			else if (input.toLowerCase().startsWith("ftpc")) {
@@ -67,9 +64,7 @@ public class Main {
 			}
 
 			else if (input.toLowerCase().startsWith(Words.English.Ram)) {
-
 				ram();
-
 			}
 
 		}
@@ -147,7 +142,7 @@ public class Main {
 
 	}
 
-	private void ping(String input) {
+	private static void ping(String input) {
 
 		if (!input.trim().equals("ping")) {
 			String parm1 = null;
@@ -182,6 +177,31 @@ public class Main {
 			Database.say("Pong.");
 	}
 
+	private static void pingAddress(String address) {
+		if (address.length() > 0) {
+			try {
+				URL url = new URL(address);
+				final HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
+				urlConn.setConnectTimeout(1000 * 10); // mTimeout is in seconds
+				final long startTime = System.currentTimeMillis();
+				urlConn.connect();
+				final long endTime = System.currentTimeMillis();
+				if (urlConn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+					// Database.say("Time (ms) : " + (endTime - startTime));
+					Database.say(Color.Green + "Success!");
+					Database.say("Pinged to " + address);
+					Database.say("Response time was : " + (endTime - startTime) + "ms");
+				}
+			} catch (IOException e) {
+
+				Database.say(Color.Red + "Error you entered : " + address);
+				Database.say("Command usage : ping https://example.com");
+
+			}
+		} else
+			Database.say("Pong.");
+	}
+
 	/**
 	 * Tells current directory
 	 */
@@ -190,6 +210,29 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
+		
+		//This is for when you type java Main -ping https://example.com
+		
+		/*
+				for (int i = 0; i < args.length; i++) {
+		
+					if (args[i].toLowerCase().trim().startsWith("-")) {
+		
+						if (args[i].trim().toLowerCase().equals("-ping")) {
+							try {
+		
+								pingAddress(args[i+1]);
+		
+							} catch (Exception e) {
+								Database.say(Color.Red + "Error");
+							}
+		
+						}
+		
+					}
+		
+				}
+		*/
 		new Main();
 	}
 

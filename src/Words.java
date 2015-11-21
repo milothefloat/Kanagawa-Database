@@ -13,7 +13,7 @@ public class Words {
 	}
 
 	public class German {
-
+		
 	}
 
 }
