@@ -17,18 +17,17 @@ public class Main {
 		Scanner s = new Scanner(System.in);
 		System.out.println("Database started!");
 
+		System.out.println("Customize your session: ");
+		System.out.print("Name: ");
+		Scanner custom = new Scanner(System.in);
+		
 		while (running) {
-			System.out.print("Database-$>");
+			System.out.print("KanaDB-" + custom + "$>"); // Adds a custom name to the session.
 			String input = s.nextLine();
 
 			// if the user entered the command "end" the application loop will break
 			if (input.toLowerCase().startsWith("end")) {
 				running = false;
-			}
-
-			// if the user enters the command "hello" the application will respond with the following statement
-			else if (input.toLowerCase().startsWith("hello")) {
-				Database.say("Hello, World!");
 			}
 
 			// if the user enters the command "create" the application will create a file with the parameters provided
@@ -57,6 +56,11 @@ public class Main {
 			else if (input.toLowerCase().startsWith("ping")) {
 				ping(input);
 			}
+			
+			else if (input.toLowerCase().startsWith("Hello")) {
+				System.out.println("Hello.");
+				
+			}
 
 			// if the user enters the command "td" they will be told the current directory
 			else if (input.toLowerCase().startsWith("td")) {
@@ -77,7 +81,7 @@ public class Main {
 		String[] replies = ftpClient.getReplyStrings();
 		if (replies != null && replies.length > 0) {
 			for (String aReply : replies) {
-				Database.say("SERVER: " + aReply);
+				Database.say("Server: " + aReply);
 			}
 		}
 	}
@@ -118,7 +122,7 @@ public class Main {
 							n.close();
 							return;
 						} else {
-							Database.say("LOGGED INTO SERVER");
+							Database.say("Logged in to server!");
 							new FTP(ftpClient);
 						}
 					} catch (IOException ex) {
