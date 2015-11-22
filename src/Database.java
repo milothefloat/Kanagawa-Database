@@ -23,7 +23,6 @@ public class Database {
 	public static void println(Object message) {
 
 		System.out.println(message + Color.White.getColor());
-
 	}
 
 	/**

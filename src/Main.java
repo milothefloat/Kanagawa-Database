@@ -3,6 +3,7 @@ import java.lang.management.ManagementFactory;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
+
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
@@ -36,12 +37,13 @@ public class Main {
 			// if the user enters the command "help" they will get a list of all the current commands
 			else if (input.toLowerCase().startsWith(Words.English.Help)) {
 				System.out.println("-------------------------");
-				System.out.println("      end to exit database");
-				System.out.println("      create to create a file");
+				System.out.println("      end, exits database");
+				System.out.println("      create, creates a file");
 				System.out.println("      hello for a response");
 				System.out.println("      td for current directory");
 				System.out.println("      ftpc SERVER USERNAME PASSWORD");
 				System.out.println("(WIP) ram gets installed ram");
+				System.out.println("      clear, clears the console");
 				System.out.println("-------------------------");
 			}
 
@@ -54,7 +56,7 @@ public class Main {
 			}
 
 			else if (input.toLowerCase().startsWith(Words.English.Hello)) {
-				System.out.println("Hello.");
+				Database.say("Hello.");
 
 			}
 
@@ -66,6 +68,14 @@ public class Main {
 			else if (input.toLowerCase().startsWith(Words.English.Ram)) {
 				ram();
 			}
+			
+			else if (input.toLowerCase().startsWith("clear")){
+				clearConsole();
+			}
+			
+			else {
+				Database.say("I don't know what " + input + " means.");
+			}
 
 		}
 
@@ -74,6 +84,14 @@ public class Main {
 		sys_in.close();
 
 	}
+	
+	public static void clearConsole () {
+		
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+		
+	}
+	
 
 	private void ram() {
 		long memorySize = ((com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize();
@@ -114,22 +132,22 @@ public class Main {
 						showServerReply(ftpClient);
 						int replyCode = ftpClient.getReplyCode();
 						if (!FTPReply.isPositiveCompletion(replyCode)) {
-							Database.say("Operation failed. Server reply code: " + replyCode);
+							Database.say(Color.Red + "Operation failed. Server reply code: " + replyCode);
 							n.close();
 							return;
 						}
 						boolean success = ftpClient.login(user, pass);
 						showServerReply(ftpClient);
 						if (!success) {
-							Database.say("Could not login to the server");
+							Database.say(Color.Red + "Could not login to the server");
 							n.close();
 							return;
 						} else {
-							Database.say("Logged in to server!");
+							Database.say(Color.Green + "Logged in to server!");
 							new FTP(ftpClient);
 						}
 					} catch (IOException ex) {
-						System.out.println("Oops! Something wrong happened");
+						Database.say(Color.Red + "Oops! Something wrong happened");
 						ex.printStackTrace();
 					}
 
@@ -143,10 +161,12 @@ public class Main {
 	}
 
 	private static void ping(String input) {
+		
+		
 
-		if (!input.trim().equals("ping")) {
+		if (!input.trim().equals(Words.English.Ping)) {
 			String parm1 = null;
-			Scanner n = new Scanner(input.substring("ping ".length()));
+			Database n = new Database(Words.English.Ping, input);
 			if (n.hasNext()) {
 				parm1 = n.next();
 			}
@@ -160,16 +180,13 @@ public class Main {
 					urlConn.connect();
 					final long endTime = System.currentTimeMillis();
 					if (urlConn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-						// Database.say("Time (ms) : " + (endTime - startTime));
 						Database.say(Color.Green + "Success!");
 						Database.say("Pinged to " + parm1);
 						Database.say("Response time was : " + (endTime - startTime) + "ms");
 					}
 				} catch (IOException e) {
-
 					Database.say(Color.Red + "Error you entered : " + parm1);
 					Database.say("Command usage : ping https://example.com");
-
 				}
 			}
 			n.close();
@@ -211,8 +228,12 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		//This is for when you type java Main -ping https://example.com
+		//Clears the console when the application starts 
+		clearConsole();
 		
+		
+		//This is for when you type java Main -ping https://example.com
+
 		/*
 				for (int i = 0; i < args.length; i++) {
 		

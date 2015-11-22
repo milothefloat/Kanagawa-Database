@@ -8,7 +8,7 @@ public class FTP {
 		Scanner s = new Scanner(System.in);
 		
 		while (ftpClient.isConnected()) {
-			System.out.print("DatabaseFTP>");
+			Database.print("DatabaseFTP>");
 			String input = s.nextLine();
 			if (input.toLowerCase().startsWith("end")) {
 				try {
