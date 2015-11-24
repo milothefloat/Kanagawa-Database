@@ -59,6 +59,7 @@ public class Main {
 				Database.say("Hello.");
 
 			}
+				
 
 			// if the user enters the command "td" they will be told the current directory
 			else if (input.toLowerCase().startsWith("td")) {
