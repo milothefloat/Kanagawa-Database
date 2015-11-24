@@ -7,7 +7,7 @@ public class Database {
 	String command = null;
 
 	public static void say(Object message) {
-		System.out.println("  Database: " + message + Color.White);
+		System.out.println("  Database: " + message + Color.Red);
 	}
 
 	public static void print(Object message) {
