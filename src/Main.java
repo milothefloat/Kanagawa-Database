@@ -18,9 +18,10 @@ public class Main {
 		Database sys_in = new Database(System.in);
 
 		Database.say(Color.Green + "Kanagawa-Database started!");
+		Database.say("");
 
 		while (running) {
-			Database.print("Kanagawa-Database>");
+			Database.print(">");
 
 			String input = sys_in.nextLine();
 
@@ -59,6 +60,7 @@ public class Main {
 				Database.say("Hello.");
 
 			}
+				
 
 			// if the user enters the command "td" they will be told the current directory
 			else if (input.toLowerCase().startsWith("td")) {
