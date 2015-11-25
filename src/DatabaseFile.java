@@ -34,9 +34,9 @@ public class DatabaseFile {
 			PrintWriter out = new PrintWriter(file_name, "UTF-8");
 			out.println(file_input);
 			out.close();
-			Database.say(Color.Green + "Created file with name : " + file_name + (file_input.length() > 0 ? (" , with input : " + file_input) : ""));
+			Console.say(Color.Green + "Created file with name : " + file_name + (file_input.length() > 0 ? (" , with input : " + file_input) : ""));
 		} catch (Exception e) {
-			Database.say(Color.Red + "Error " + file_input + " " + file_name);
+			Console.say(Color.Red + "Error " + file_input + " " + file_name);
 		}
 		db_in.close();
 	}

@@ -12,18 +12,15 @@ public class Main {
 	// Stopping the application, if false the application loop will break
 	public boolean running = true;
 
-
 	public Main() {
 		// Application start point
 
 		Database sys_in = new Database(System.in);
-		
-		
-		Database.println(Color.Green + "Kanagawa-Database started!");
+
+		Console.println(Color.Green + "Kanagawa-Console started!");
 
 		while (running) {
-			Database.print(">");
-
+			Console.print(">");
 			String input = sys_in.nextLine();
 
 			// if the user entered the end command the application loop will break
@@ -39,7 +36,7 @@ public class Main {
 			// if the user enters the command "help" they will get a list of all the current commands
 			else if (input.toLowerCase().startsWith(Words.English.Help)) {
 				System.out.println("-------------------------");
-				System.out.println("      end, exits database");
+				System.out.println("      end, exits Console");
 				System.out.println("      create, creates a file");
 				System.out.println("      hello for a response");
 				System.out.println("      td for current directory");
@@ -58,7 +55,7 @@ public class Main {
 			}
 
 			else if (input.toLowerCase().startsWith(Words.English.Hello)) {
-				Database.say("Hello.");
+				Console.say("Hello.");
 
 			}
 
@@ -77,18 +74,18 @@ public class Main {
 
 			else if (input.toLowerCase().startsWith("color")) {
 
-				System.out.println(Database.textColor.getName());
+				System.out.println(Console.textColor.getName());
 
 			}
 
 			else {
-				Database.say("I don't know what " + input + " means.");
+				Console.say("I don't know what " + input + " means.");
 			}
 
 		}
 
 		// Application exit point
-		Database.say("Kanagawa-Database session has ended!");
+		Console.say("Kanagawa-Database session has ended!");
 		sys_in.close();
 
 	}
@@ -103,14 +100,14 @@ public class Main {
 	private void ram() {
 		long memorySize = ((com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize();
 		memorySize = memorySize / (1024 * 1024 * 1024);
-		Database.say("You have about " + memorySize + "GB of RAM");
+		Console.say("You have about " + memorySize + "GB of RAM");
 	}
 
 	private void showServerReply(FTPClient ftpClient) {
 		String[] replies = ftpClient.getReplyStrings();
 		if (replies != null && replies.length > 0) {
 			for (String aReply : replies) {
-				Database.say("Server: " + aReply);
+				Console.say("Server: " + aReply);
 			}
 		}
 	}
@@ -139,22 +136,22 @@ public class Main {
 						showServerReply(ftpClient);
 						int replyCode = ftpClient.getReplyCode();
 						if (!FTPReply.isPositiveCompletion(replyCode)) {
-							Database.say(Color.Red + "Operation failed. Server reply code: " + replyCode);
+							Console.say(Color.Red + "Operation failed. Server reply code: " + replyCode);
 							n.close();
 							return;
 						}
 						boolean success = ftpClient.login(user, pass);
 						showServerReply(ftpClient);
 						if (!success) {
-							Database.say(Color.Red + "Could not login to the server");
+							Console.say(Color.Red + "Could not login to the server");
 							n.close();
 							return;
 						} else {
-							Database.say(Color.Green + "Logged in to server!");
+							Console.say(Color.Green + "Logged in to server!");
 							new FTP(ftpClient);
 						}
 					} catch (IOException ex) {
-						Database.say(Color.Red + "Oops! Something wrong happened");
+						Console.say(Color.Red + "Oops! Something wrong happened");
 						ex.printStackTrace();
 					}
 
@@ -163,7 +160,7 @@ public class Main {
 			n.close();
 
 		} else
-			Database.say("See help for use of command");
+			Console.say("See help for use of command");
 
 	}
 
@@ -185,18 +182,18 @@ public class Main {
 					urlConn.connect();
 					final long endTime = System.currentTimeMillis();
 					if (urlConn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-						Database.say(Color.Green + "Success!");
-						Database.say("Pinged to " + parm1);
-						Database.say("Response time was : " + (endTime - startTime) + "ms");
+						Console.say(Color.Green + "Success!");
+						Console.say("Pinged to " + parm1);
+						Console.say("Response time was : " + (endTime - startTime) + "ms");
 					}
 				} catch (IOException e) {
-					Database.say(Color.Red + "Error you entered : " + parm1);
-					Database.say("Command usage : ping https://example.com");
+					Console.say(Color.Red + "Error you entered : " + parm1);
+					Console.say("Command usage : ping https://example.com");
 				}
 			}
 			n.close();
 		} else
-			Database.say("Pong.");
+			Console.say("Pong.");
 	}
 
 	private static void pingAddress(String address) {
@@ -209,26 +206,26 @@ public class Main {
 				urlConn.connect();
 				final long endTime = System.currentTimeMillis();
 				if (urlConn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-					// Database.say("Time (ms) : " + (endTime - startTime));
-					Database.say(Color.Green + "Success!");
-					Database.say("Pinged to " + address);
-					Database.say("Response time was : " + (endTime - startTime) + "ms");
+					// Console.say("Time (ms) : " + (endTime - startTime));
+					Console.say(Color.Green + "Success!");
+					Console.say("Pinged to " + address);
+					Console.say("Response time was : " + (endTime - startTime) + "ms");
 				}
 			} catch (IOException e) {
 
-				Database.say(Color.Red + "Error you entered : " + address);
-				Database.say("Command usage : ping https://example.com");
+				Console.say(Color.Red + "Error you entered : " + address);
+				Console.say("Command usage : ping https://example.com");
 
 			}
 		} else
-			Database.say("Pong.");
+			Console.say("Pong.");
 	}
 
 	/**
 	 * Tells current directory
 	 */
 	private void td() {
-		Database.say(System.getProperty("user.dir"));
+		Console.say(System.getProperty("user.dir"));
 	}
 
 	public static void main(String[] args) {
@@ -245,7 +242,7 @@ public class Main {
 				for (int i2 = 0; i2 < Color.Colors.length; i2++) {
 
 					if (args[i + 1].trim().toLowerCase().equals(Color.Colors[i2].getName())) {
-						Database.textColor = Color.Colors[i2];
+						Console.textColor = Color.Colors[i2];
 					}
 
 				}

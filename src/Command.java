@@ -11,7 +11,7 @@ public class Command {
 
 	}
 	
-	public String getName () {
+	public String getValue () {
 		
 		return command;
 		

@@ -5,26 +5,6 @@ public class Database {
 
 	Scanner input = null;
 	String command = null;
-	public static Color textColor = Color.White;
-
-	public static void say(Object message) {
-		System.out.println(textColor + "  Database: " + message + textColor);
-	}
-
-	public static void print(Object message) {
-		System.out.print(textColor.getColor() + message + textColor.getColor());
-	}
-
-	public static void println(Object message, Color endColor) {
-
-		System.out.println(textColor.getColor() + message + textColor.getColor());
-
-	}
-
-	public static void println(Object message) {
-
-		System.out.println(textColor.getColor() + message + textColor.getColor());
-	}
 
 	/**
 	 * the command will be removed from input 
@@ -45,7 +25,6 @@ public class Database {
 	 * */
 	public void setCommand(String command) {
 		this.command = command;
-		Scanner a = new Scanner("");
 	}
 
 	public boolean hasNext() {

@@ -8,7 +8,7 @@ public class FTP {
 		Scanner s = new Scanner(System.in);
 		
 		while (ftpClient.isConnected()) {
-			Database.print("DatabaseFTP>");
+			Console.print("DatabaseFTP>");
 			String input = s.nextLine();
 			if (input.toLowerCase().startsWith("end")) {
 				try {
@@ -21,7 +21,7 @@ public class FTP {
 			
 		}
 		
-		Database.say("FTP session ended!");
+		Console.say("FTP session ended!");
 		
 		s.close();
 	}
