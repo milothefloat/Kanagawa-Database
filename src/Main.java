@@ -12,13 +12,14 @@ public class Main {
 	// Stopping the application, if false the application loop will break
 	public boolean running = true;
 
+
 	public Main() {
 		// Application start point
 
 		Database sys_in = new Database(System.in);
-
-		Database.say(Color.Green + "Kanagawa-Database started!");
-		Database.say("");
+		
+		
+		Database.println(Color.Green + "Kanagawa-Database started!");
 
 		while (running) {
 			Database.print(">");
@@ -60,7 +61,6 @@ public class Main {
 				Database.say("Hello.");
 
 			}
-				
 
 			// if the user enters the command "td" they will be told the current directory
 			else if (input.toLowerCase().startsWith("td")) {
@@ -78,7 +78,7 @@ public class Main {
 			else if (input.toLowerCase().startsWith("color")) {
 
 				System.out.println(Database.textColor.getName());
-				
+
 			}
 
 			else {
@@ -241,10 +241,9 @@ public class Main {
 		for (int i = 0; i < args.length; i++) {
 
 			if (args[i].toLowerCase().trim().startsWith("-color")) {
-				
-				
+
 				for (int i2 = 0; i2 < Color.Colors.length; i2++) {
-					
+
 					if (args[i + 1].trim().toLowerCase().equals(Color.Colors[i2].getName())) {
 						Database.textColor = Color.Colors[i2];
 					}
