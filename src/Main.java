@@ -68,11 +68,17 @@ public class Main {
 			else if (input.toLowerCase().startsWith(Words.English.Ram)) {
 				ram();
 			}
-			
-			else if (input.toLowerCase().startsWith("clear")){
+
+			else if (input.toLowerCase().startsWith("clear")) {
 				clearConsole();
 			}
-			
+
+			else if (input.toLowerCase().startsWith("color")) {
+
+				System.out.println(Database.textColor.getName());
+				
+			}
+
 			else {
 				Database.say("I don't know what " + input + " means.");
 			}
@@ -84,14 +90,13 @@ public class Main {
 		sys_in.close();
 
 	}
-	
-	public static void clearConsole () {
-		
+
+	public static void clearConsole() {
+
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
-		
+
 	}
-	
 
 	private void ram() {
 		long memorySize = ((com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize();
@@ -161,8 +166,6 @@ public class Main {
 	}
 
 	private static void ping(String input) {
-		
-		
 
 		if (!input.trim().equals(Words.English.Ping)) {
 			String parm1 = null;
@@ -227,33 +230,29 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		
+
 		//Clears the console when the application starts 
 		clearConsole();
-		
-		
-		//This is for when you type java Main -ping https://example.com
 
-		/*
-				for (int i = 0; i < args.length; i++) {
-		
-					if (args[i].toLowerCase().trim().startsWith("-")) {
-		
-						if (args[i].trim().toLowerCase().equals("-ping")) {
-							try {
-		
-								pingAddress(args[i+1]);
-		
-							} catch (Exception e) {
-								Database.say(Color.Red + "Error");
-							}
-		
-						}
-		
+		//This is for when you type java Main -color red
+
+		for (int i = 0; i < args.length; i++) {
+
+			if (args[i].toLowerCase().trim().startsWith("-color")) {
+				
+				
+				for (int i2 = 0; i2 < Color.Colors.length; i2++) {
+					
+					if (args[i + 1].trim().toLowerCase().equals(Color.Colors[i2].getName())) {
+						Database.textColor = Color.Colors[i2];
 					}
-		
+
 				}
-		*/
+
+			}
+
+		}
+
 		new Main();
 	}
 
