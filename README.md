@@ -1,2 +1,2 @@
-# div style="text-align:center">Kanagawa-Database</div>
+# Kanagawa-Database
 Kinda turned into a console
