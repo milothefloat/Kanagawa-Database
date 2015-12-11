@@ -1,28 +1,35 @@
+package database;
 import java.io.IOException;
 import java.util.Scanner;
 
 import org.apache.commons.net.ftp.FTPClient;
 
-public class FTP {
-	public FTP (FTPClient ftpClient) {
+public class FTP
+{
+	public FTP(FTPClient ftpClient)
+	{
 		Scanner s = new Scanner(System.in);
-		
-		while (ftpClient.isConnected()) {
+
+		while (ftpClient.isConnected())
+		{
 			Console.print("DatabaseFTP>");
 			String input = s.nextLine();
-			if (input.toLowerCase().startsWith("end")) {
-				try {
+			if (input.toLowerCase().startsWith("end"))
+			{
+				try
+				{
 					ftpClient.disconnect();
-				} catch (IOException e) {
+				} catch (IOException e)
+				{
 					e.printStackTrace();
 				}
-				
+
 			}
-			
+
 		}
-		
+
 		Console.say("FTP session ended!");
-		
+
 		s.close();
 	}
 }

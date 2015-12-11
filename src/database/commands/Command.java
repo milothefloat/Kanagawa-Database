@@ -1,47 +1,36 @@
+package database.commands;
 import java.util.List;
 
-public class Command {
+import database.Words;
 
+public class Command
+{
 	private String command = null;
 	public static List<Command> commands;
 
-	public Command(String command) {
-
+	public Command(String command)
+	{
 		this.command = command;
-
 	}
-	
-	public String getValue () {
-		
+
+	public String getValue()
+	{
 		return command;
-		
 	}
 
-	public void run() {
-
+	public void run()
+	{
+		System.err.println("No run method for : " + command);
 	}
 
-	private static class Create extends Command {
-
-		public Create(String command) {
-			super(command);
-		}
-
-		public void run() {
-			
-		}
-
-	}
-
-	static {
-
-		commands.add(new Create(Words.English.Create));
+	static
+	{
+		commands.add(new Command(Words.English.Create));
 		commands.add(new Command(Words.English.End));
 		commands.add(new Command(Words.English.Hello));
 		commands.add(new Command(Words.English.Help));
 		commands.add(new Command(Words.English.Ping));
 		commands.add(new Command(Words.English.Ram));
-
 	}
 
 }
