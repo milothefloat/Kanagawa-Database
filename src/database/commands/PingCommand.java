@@ -8,18 +8,24 @@ import database.*;
 public class PingCommand extends Command
 {
 
-	public PingCommand(String command)
+	public PingCommand(String name)
 	{
-		super(command);
+		super(name);
+	}
+
+	@Override
+	public boolean run(String arg)
+	{
+		return ping(arg);
 	}
 	
 	@Override
-	public void run () {
-		
+	public boolean run() {
+		Console.say("Pong.");
+		return true;
 	}
-	
-	@SuppressWarnings("unused")
-	private static void pingAddress(String address)
+
+	private boolean ping(String address)
 	{
 		if (address.length() > 0)
 		{
@@ -39,12 +45,13 @@ public class PingCommand extends Command
 				}
 			} catch (IOException e)
 			{
-
 				Console.say(Color.red + "Error you entered : " + address);
 				Console.say("Command usage : ping https://example.com");
-
+				e.printStackTrace();
+				return false;
 			}
-		} else Console.say("Pong.");
+		}
+		return true;
 	}
 
 }

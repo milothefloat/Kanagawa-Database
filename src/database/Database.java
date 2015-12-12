@@ -1,6 +1,8 @@
 package database;
+
 import java.io.InputStream;
 import java.util.Scanner;
+
 public class Database
 {
 
@@ -47,9 +49,7 @@ public class Database
 
 	public void setInput(String input)
 	{
-
 		this.input = new Scanner(input.substring((command + " ").length()));
-
 	}
 
 	public String next()

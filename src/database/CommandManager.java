@@ -1,16 +1,33 @@
 package database;
-import database.commands.Command;
+
+import java.util.Scanner;
 
 public class CommandManager
 {
-	public CommandManager(String input)
+	public static boolean run(String input)
 	{
-		for (int i = 0; i < Command.commands.size(); i++)
+		for (Commands c : Commands.values())
 		{
-			if (input.toLowerCase().startsWith(Command.commands.get(i).getValue()))
+			if (input.toLowerCase().startsWith(c.getName()))
 			{
-				Command.commands.get(i).run();
+				String command = c.getName();
+				Scanner argsS = null;
+				String[] args = new String[256];
+
+				if (input.length() > c.getName().length())
+				{
+					argsS = new Scanner(input.substring((command + " ").length()));
+					for (int i = 0; i < args.length; i++)
+					{
+						if (argsS.hasNext()) args[i] = argsS.next();
+						else break;
+					}
+				}
+				return c.run(args);
 			}
 		}
+
+		Console.say("I don't know what " + input + " means.");
+		return false;
 	}
 }

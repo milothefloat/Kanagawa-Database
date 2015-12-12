@@ -10,27 +10,28 @@ import org.apache.commons.net.ftp.*;
 public class Main
 {
 
-	public boolean running = true;
+	public static boolean running = true;
 
 	public Main()
 	{
-
 		Database sys_in = new Database(System.in);
-
 		Console.println(Color.green + "Kanagawa-Console started!");
 
 		while (running)
 		{
 			Console.print(">");
 			String input = sys_in.nextLine();
-
-			if (input.toLowerCase().startsWith(Words.English.End))
+			
+			CommandManager.run(input);
+			/*if (input.toLowerCase().startsWith(Words.English.End))
 			{
 				running = false;
-			} else if (input.toLowerCase().startsWith(Words.English.Create))
+			}
+			else if (input.toLowerCase().startsWith(Words.English.Create))
 			{
 				new DatabaseFile(input);
-			} else if (input.toLowerCase().startsWith(Words.English.Help))
+			}
+			else if (input.toLowerCase().startsWith(Words.English.Help))
 			{
 				System.out.println("-------------------------");
 				System.out.println("      end, exits Console");
@@ -41,31 +42,39 @@ public class Main
 				System.out.println("(WIP) ram gets installed ram");
 				System.out.println("      clear, clears the console");
 				System.out.println("-------------------------");
-			} else if (input.toLowerCase().startsWith("ftpc"))
+			}
+			else if (input.toLowerCase().startsWith("ftpc"))
 			{
 				ftpc(input);
-			} else if (input.toLowerCase().startsWith(Words.English.Ping))
+			}
+			else if (input.toLowerCase().startsWith(Words.English.Ping))
 			{
 				ping(input);
-			} else if (input.toLowerCase().startsWith(Words.English.Hello))
+			}
+			else if (input.toLowerCase().startsWith(Words.English.Hello))
 			{
 				Console.say("Hello.");
-			} else if (input.toLowerCase().startsWith("td"))
+			}
+			else if (input.toLowerCase().startsWith("td"))
 			{
 				td();
-			} else if (input.toLowerCase().startsWith(Words.English.Ram))
+			}
+			else if (input.toLowerCase().startsWith(Words.English.Ram))
 			{
 				ram();
-			} else if (input.toLowerCase().startsWith("clear"))
+			}
+			else if (input.toLowerCase().startsWith("clear"))
 			{
 				Console.clear();
-			} else if (input.toLowerCase().startsWith("color"))
+			}
+			else if (input.toLowerCase().startsWith("color"))
 			{
 				System.out.println(Console.textColor.getName());
-			} else
+			}
+			else
 			{
 				Console.say("I don't know what " + input + " means.");
-			}
+			}*/
 		}
 		Console.say("Kanagawa-Database session has ended!");
 		sys_in.close();
@@ -130,7 +139,8 @@ public class Main
 							Console.say(Color.red + "Could not login to the server");
 							n.close();
 							return;
-						} else
+						}
+						else
 						{
 							Console.say(Color.green + "Logged in to server!");
 							new FTP(ftpClient);
@@ -144,47 +154,11 @@ public class Main
 			}
 			n.close();
 
-		} else Console.say("See help for use of command");
+		}
+		else Console.say("See help for use of command");
 
 	}
-
-	private static void ping(String input)
-	{
-		if (!input.trim().equals(Words.English.Ping))
-		{
-			String parm1 = null;
-			Database n = new Database(Words.English.Ping, input);
-			if (n.hasNext())
-			{
-				parm1 = n.next();
-			}
-			if (parm1.length() > 0)
-			{
-				try
-				{
-					URL url = new URL(parm1);
-					final HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
-					urlConn.setConnectTimeout(1000 * 10); // mTimeout is in
-															// seconds
-					final long startTime = System.currentTimeMillis();
-					urlConn.connect();
-					final long endTime = System.currentTimeMillis();
-					if (urlConn.getResponseCode() == HttpURLConnection.HTTP_OK)
-					{
-						Console.say(Color.green + "Success!");
-						Console.say("Pinged to " + parm1);
-						Console.say("Response time was : " + (endTime - startTime) + "ms");
-					}
-				} catch (IOException e)
-				{
-					Console.say(Color.red + "Error you entered : " + parm1);
-					Console.say("Command usage : ping https://example.com");
-				}
-			}
-			n.close();
-		} else Console.say("Pong.");
-	}
-
+	
 	/**
 	 * Tells current directory
 	 */
