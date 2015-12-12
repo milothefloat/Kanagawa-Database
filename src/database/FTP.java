@@ -1,4 +1,5 @@
 package database;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -9,10 +10,9 @@ public class FTP
 	public FTP(FTPClient ftpClient)
 	{
 		Scanner s = new Scanner(System.in);
-
 		while (ftpClient.isConnected())
 		{
-			Console.print("DatabaseFTP>");
+			Console.print("FTP>");
 			String input = s.nextLine();
 			if (input.toLowerCase().startsWith("end"))
 			{
@@ -23,13 +23,9 @@ public class FTP
 				{
 					e.printStackTrace();
 				}
-
 			}
-
 		}
-
 		Console.say("FTP session ended!");
-
 		s.close();
 	}
 }

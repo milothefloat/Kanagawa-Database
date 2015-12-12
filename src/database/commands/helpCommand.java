@@ -1,6 +1,6 @@
 package database.commands;
 
-import database.Command;
+import database.util.Command;
 
 public class helpCommand extends Command
 {

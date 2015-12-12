@@ -6,6 +6,7 @@ import org.apache.commons.net.ftp.*;
 
 import database.*;
 import database.FTP;
+import database.util.Command;
 
 public class ftpcCommand extends Command
 {

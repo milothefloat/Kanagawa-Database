@@ -1,6 +1,7 @@
 package database.commands;
 
 import database.*;
+import database.util.Command;
 
 public class ramCommand extends Command
 {

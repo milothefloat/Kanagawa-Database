@@ -1,6 +1,7 @@
 package database.commands;
 
 import database.*;
+import database.util.Command;
 
 /**Short for tell directory*/
 public class tdCommand extends Command

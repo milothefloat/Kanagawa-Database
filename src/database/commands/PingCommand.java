@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.*;
 
 import database.*;
+import database.util.Command;
 
 public class PingCommand extends Command
 {

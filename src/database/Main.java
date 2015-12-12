@@ -1,12 +1,14 @@
 package database;
 
+import database.util.CommandManager;
+
 public class Main {
 
 	public static boolean running = true;
 
 	public Main() {
 		Database sys_in = new Database(System.in);
-		Console.println(Color.green + "Kanagawa-Console started!");
+		Console.println(Color.green + "Kanagawa-Conso has started!");
 		while (running) {
 			Console.print(">");
 			String input = sys_in.nextLine();

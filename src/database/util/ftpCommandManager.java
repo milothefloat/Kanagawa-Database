@@ -1,13 +1,15 @@
-package database;
+package database.util;
 
 import java.util.Scanner;
 
-public class CommandManager
+import database.Console;
+
+public class ftpCommandManager
 {
 	/**Returns false if input can't be handled*/
 	public static boolean run(String input)
 	{
-		for (Commands c : Commands.values())
+		for (ftpCommands c : ftpCommands.values())
 		{
 			if (input.toLowerCase().startsWith(c.getName()))
 			{

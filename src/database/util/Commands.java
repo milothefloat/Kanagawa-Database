@@ -1,5 +1,6 @@
-package database;
+package database.util;
 
+import database.*;
 import database.commands.*;
 
 public enum Commands
@@ -30,17 +31,15 @@ public enum Commands
 		return name;
 	}
 
+	public Command getCommand()
+	{
+		return command;
+	}
+
 	public boolean run(String[] args)
 	{
-		if (args[0] == null)
-		{
-			return command.run();
-
-		}
-		else
-		{
-			return command.run(args);
-		}
+		if (args == null || args[0] == null) return command.run();
+		else return command.run(args);
 	}
 
 }
