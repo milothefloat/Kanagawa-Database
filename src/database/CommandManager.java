@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class CommandManager
 {
+	/**Returns false if input can't be handled*/
 	public static boolean run(String input)
 	{
 		for (Commands c : Commands.values())
