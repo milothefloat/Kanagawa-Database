@@ -8,9 +8,9 @@ public class Main {
 
 	public Main() {
 		Database sys_in = new Database(System.in);
-		Console.println(Color.green + "Kanagawa-Conso has started!");
+		Console.println(Color.green + "Kanagawa-Console has started!");
 		while (running) {
-			Console.print(">");
+			Console.print("> ");
 			String input = sys_in.nextLine();
 			CommandManager.run(input);
 		}
