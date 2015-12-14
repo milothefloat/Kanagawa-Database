@@ -25,6 +25,7 @@ public class ftpCommandManager
 						if (argsS.hasNext()) args[i] = argsS.next();
 						else break;
 					}
+					argsS.close();
 				}
 				return c.run(args);
 			}

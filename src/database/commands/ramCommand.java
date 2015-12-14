@@ -1,7 +1,9 @@
 package database.commands;
 
+import java.lang.management.*;
+
 import database.*;
-import database.util.Command;
+import database.util.*;
 
 public class ramCommand extends Command
 {
@@ -19,11 +21,10 @@ public class ramCommand extends Command
 
 	private void ram()
 	{
-		/*
+		
 		long memorySize = ((com.sun.management.OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize();
 		memorySize = memorySize / (1000 * 1000 * 1000);
-		Console.say("You have about " + memorySize + "GB of RAM");*/
-		Console.say("This command is not working right now.");
+		Console.say("You have about " + memorySize + "GB of RAM");
 	}
 
 }
