@@ -1,7 +1,7 @@
 package database.commands;
 
 import database.*;
-import database.util.Command;
+import database.util.*;
 
 public class createCommand extends Command
 {

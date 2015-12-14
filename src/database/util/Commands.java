@@ -31,7 +31,7 @@ public enum Commands
 		return name;
 	}
 
-	public Command getCommand()
+	public Command get()
 	{
 		return command;
 	}

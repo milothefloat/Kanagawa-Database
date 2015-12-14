@@ -3,7 +3,7 @@ package database.util;
 public enum ftpCommands
 {
 
-	end(Commands.end.getCommand());
+	end(Commands.end.get());
 
 	private final Command command;
 	private final String name;

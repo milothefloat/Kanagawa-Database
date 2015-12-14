@@ -1,0 +1,8 @@
+Command usage
+td Tells directory
+help Shows the user a list of commands that they can use.
+create Creates a file
+ftpc SERVER USERNAME PASSWORD
+ram Gets total physical ram(not working right now)
+clear Clears the console
+end Exits the console

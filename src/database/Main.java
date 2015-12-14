@@ -1,6 +1,6 @@
 package database;
 
-import database.util.CommandManager;
+import database.util.*;
 
 public class Main {
 

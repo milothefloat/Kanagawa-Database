@@ -1,6 +1,8 @@
-package database;
+package database.util;
 
 import java.io.PrintWriter;
+
+import database.*;
 
 public class DatabaseFile
 {
