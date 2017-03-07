@@ -14,15 +14,20 @@ public class Main {
 	public Main() {
 		// Application start point
 		Scanner s = new Scanner(System.in);
-		System.out.println("KanaDB v0.01 by The Kanagawa Project.");
+		System.out.println("KConsole v0.01 by The Kanagawa Project.");
+		public static char env_buffer[] = "NULL";
+		public static boolean f1;
+		public static boolean f2;
+		public static boolean f3;
 
 		while (running) {
-			System.out.print("KDB> ");
+
+			System.out.print("KConsole> ");
 			String input = s.nextLine();
 
 			// if the user entered the command "end" the application loop will
 			// break
-			if (input.toLowerCase().startsWith("end")) {
+			if ( input.toLowerCase().startsWith("end") || input.toLowerCase().startsWith("exit") ) {
 				running = false;
 			}
 
@@ -32,8 +37,40 @@ public class Main {
 				hello(input);
 			}
 			
-			else if (input.toLowerCase().startsWith("delete"))
-			{
+			else if (input.toLowerCase().startsWith("runenv")) {
+
+				public static char current[];
+
+				if ( env_buffer == "NULL" ) {
+					System.out.println("No environment variables declared.");
+				} else {
+					int i = 0;
+
+					for ( i = 0; i <= 33; i++ ) {
+						if ( i == 3 ) {
+							current = current + env_buffer[i];
+						}
+
+						switch ( current ) {
+							case "SFE\":
+								fg1 = true;
+								break;
+							case "RFD\":
+								fg2 = true;
+								break;
+							case "LCH\":
+								fg3 = true;
+								break;
+							default:
+								System.out.println("No env variables found.\n");
+								running = false;
+								
+						}
+					}
+				}
+			}
+
+			else if (input.toLowerCase().startsWith("delete")) {
 				// Delete files?
 			}
 
@@ -51,6 +88,7 @@ public class Main {
 				System.out.println("  create to create a file");
 				System.out.println("  hello for a response");
 				System.out.println("  td for current directory");
+				System.out.println("  runenv for executing environment variables");
 				System.out.println("  clear to clear the screen.");
 				System.out.println("  ftpc SERVER USERNAME PASSWORD");
 				System.out.println("  cos  Current OS          ");
