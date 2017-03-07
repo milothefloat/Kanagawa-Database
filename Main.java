@@ -15,11 +15,7 @@ public class Main {
 		// Application start point
 		Scanner s = new Scanner(System.in);
 		System.out.println("KConsole v0.01 by The Kanagawa Project.");
-		public static char env_buffer[] = "NULL";
-		public static boolean f1;
-		public static boolean f2;
-		public static boolean f3;
-
+		
 		while (running) {
 
 			System.out.print("KConsole> ");
@@ -37,38 +33,6 @@ public class Main {
 				hello(input);
 			}
 			
-			else if (input.toLowerCase().startsWith("runenv")) {
-
-				public static char current[];
-
-				if ( env_buffer == "NULL" ) {
-					System.out.println("No environment variables declared.");
-				} else {
-					int i = 0;
-
-					for ( i = 0; i <= 33; i++ ) {
-						if ( i == 3 ) {
-							current = current + env_buffer[i];
-						}
-
-						switch ( current ) {
-							case "SFE\":
-								fg1 = true;
-								break;
-							case "RFD\":
-								fg2 = true;
-								break;
-							case "LCH\":
-								fg3 = true;
-								break;
-							default:
-								System.out.println("No env variables found.\n");
-								running = false;
-								
-						}
-					}
-				}
-			}
 
 			else if (input.toLowerCase().startsWith("delete")) {
 				// Delete files?
