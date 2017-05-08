@@ -33,13 +33,16 @@ public class PingCommand extends Command
 			try
 			{
 				URL url = new URL(address);
+
 				final HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
 				urlConn.setConnectTimeout(1000 * 10); // mTimeout is in seconds
+
 				final long startTime = System.currentTimeMillis();
 				urlConn.connect();
+
 				final long endTime = System.currentTimeMillis();
-				if (urlConn.getResponseCode() == HttpURLConnection.HTTP_OK)
-				{
+
+				if (urlConn.getResponseCode() == HttpURLConnection.HTTP_OK) {
 					Console.say(Color.green + "Success!");
 					Console.say("Pinged to " + address);
 					Console.say("Response time was : " + (endTime - startTime) + "ms");
