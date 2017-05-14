@@ -1,7 +1,7 @@
 public class Database {
 
 	public static void say(String message) {
-		System.out.println("  Database: " + message);
+		System.out.println("  Console: " + message);
 	}
 
 }
