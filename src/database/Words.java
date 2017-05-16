@@ -20,9 +20,15 @@ public class Words
 		char alpha[] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 	}
 
-	public class German
+	public class 中文
 	{
-
+		public static final String 创建 = "create";
+		public static final String 随机存取存储器  = "ram";
+		public static final String 结束           = "end";
+		public static final String 帮帮我          = "help";
+		public static final String 你好             = "hello";
+		public static final String 平                = "ping";
+		public static final String 安全壳              = "ssh";
 	}
 
 }
