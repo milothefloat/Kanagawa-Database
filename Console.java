@@ -4,4 +4,12 @@ public class Console {
 		System.out.println("  Console: " + message);
 	}
 
+	public static void endProgram(String customMessage, boolean e)
+	{
+		if ( e == false )
+		{
+			super.say(customMessage);
+		}
+	}
+
 }
