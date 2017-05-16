@@ -3,11 +3,36 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
+
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
 public class Main {
 
+	public static int c_ = 0;
+
+	public boolean running = true;
+	
+	static void exitAt(Object state) {
+		switch(c_) {
+			case 0:
+				// Exit cleanly.
+				running = false;
+				break;
+			case 1:
+				// Exit cleanly, with alert.
+				System.out.println("Exiting cleanly.");
+				running = false;
+				break;
+			case 3:
+				System.out.println("Something weird happened.");
+				running = false;
+				break;
+			default:
+				break;
+		}
+	}
+	
 	// Stopping the application, if false the application loop will break
 	public boolean running = true;
 
