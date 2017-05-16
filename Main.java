@@ -12,25 +12,30 @@ public class Main {
 	public static int c_ = 0;
 
 	public boolean running = true;
+	public boolean toggleEnv = false;
 
-	static void exitAt(Object state) {
-		switch(c_) {
-			case 0:
-				// Exit cleanly.
-				running = false;
-				break;
-			case 1:
-				// Exit cleanly, with alert.
-				System.out.println("Exiting cleanly.");
-				running = false;
-				break;
-			case 3:
-				System.out.println("Something weird happened.");
-				running = false;
-				break;
-			default:
-				
-				break;
+	static void exitAt(boolean state) {
+		running = state;
+		if ( state == false ) {
+			switch(c_) {
+				case 0:
+					// Exit cleanly.
+					running = false;
+					break;
+				case 1:
+					// Exit cleanly, with alert.
+					System.out.println("Exiting cleanly.");
+					running = false;
+					break;
+				case 3:
+					System.out.println("Something weird happened.");
+					running = false;
+					break;
+				default:
+					System.out.println("====TERMINATED====");
+					running = false;
+					break;
+			}
 		}
 	}
 
@@ -40,7 +45,7 @@ public class Main {
 	public Main() {
 		// Application start point
 		Scanner s = new Scanner(System.in);
-		System.out.println("KConsole v0.01 by The Kanagawa Project.");
+		System.out.println("KConsole v0.01 by Troy Sweeney and Milo Sipka.");
 
 		while (running) {
 
@@ -50,7 +55,8 @@ public class Main {
 			// if the user entered the command "end" the application loop will
 			// break
 			if ( input.toLowerCase().startsWith("end") || input.toLowerCase().startsWith("exit") ) {
-				running = false;
+				c_ = 0;
+				exitAt(false);
 			}
 
 			// if the user enters the command "hello" the application will
@@ -105,7 +111,7 @@ public class Main {
 
 			else if (input.toLowerCase().startsWith("clear")){
 				int i = 0;
-				for (i=0;i<32;i++)
+				for ( i=0; i<32; i++ )
 				{
 					System.out.println("\n");
 				}
