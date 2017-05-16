@@ -21,7 +21,7 @@ public class FTP {
 
 		}
 
-		Database.say("FTP session ended!");
+		Console.say("FTP session ended!");
 
 		s.close();
 	}

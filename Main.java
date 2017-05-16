@@ -12,7 +12,7 @@ public class Main {
 	public static int c_ = 0;
 
 	public boolean running = true;
-	
+
 	static void exitAt(Object state) {
 		switch(c_) {
 			case 0:
@@ -32,7 +32,7 @@ public class Main {
 				break;
 		}
 	}
-	
+
 	// Stopping the application, if false the application loop will break
 	public boolean running = true;
 
@@ -40,7 +40,7 @@ public class Main {
 		// Application start point
 		Scanner s = new Scanner(System.in);
 		System.out.println("KConsole v0.01 by The Kanagawa Project.");
-		
+
 		while (running) {
 
 			System.out.print("KConsole> ");
@@ -57,7 +57,7 @@ public class Main {
 			else if (input.toLowerCase().startsWith("hello")) {
 				hello(input);
 			}
-			
+
 
 			else if (input.toLowerCase().startsWith("delete")) {
 				// Delete files?
@@ -73,7 +73,7 @@ public class Main {
 			// the current commands
 			else if (input.toLowerCase().startsWith("help")) {
 				System.out.println("----------------------------");
-				System.out.println("  end to exit database");
+				System.out.println("  end to exit Console");
 				System.out.println("  create to create a file");
 				System.out.println("  hello for a response");
 				System.out.println("  td for current directory");
@@ -101,7 +101,7 @@ public class Main {
 			else if (input.toLowerCase().startsWith("td")) {
 				td();
 			}
-			
+
 			else if (input.toLowerCase().startsWith("clear")){
 				int i = 0;
 				for (i=0;i<32;i++)
@@ -109,18 +109,18 @@ public class Main {
 					System.out.println("\n");
 				}
 			}
-			
+
 			else if (input.toLowerCase().startsWith("cos")) {
 				String currentOS = System.getProperty("os.name");
-				
+
 				System.out.println("Current OS: " + currentOS);
 			}
-			
+
 
 		}
 
 		// Application exit point
-		Database.say("Database session has ended!");
+		Console.say("Console session has ended!");
 		s.close();
 
 	}
@@ -129,7 +129,7 @@ public class Main {
 		String[] replies = ftpClient.getReplyStrings();
 		if (replies != null && replies.length > 0) {
 			for (String aReply : replies) {
-				Database.say("SERVER: " + aReply);
+				Console.say("SERVER: " + aReply);
 			}
 		}
 	}
@@ -160,7 +160,7 @@ public class Main {
 						showServerReply(ftpClient);
 						int replyCode = ftpClient.getReplyCode();
 						if (!FTPReply.isPositiveCompletion(replyCode)) {
-							Database.say("Operation failed. Server reply code: "
+							Console.say("Operation failed. Server reply code: "
 									+ replyCode);
 							n.close();
 							return;
@@ -168,11 +168,11 @@ public class Main {
 						boolean success = ftpClient.login(user, pass);
 						showServerReply(ftpClient);
 						if (!success) {
-							Database.say("Could not login to the server");
+							Console.say("Could not login to the server");
 							n.close();
 							return;
 						} else {
-							Database.say("LOGGED INTO SERVER");
+							Console.say("LOGGED INTO SERVER");
 							new FTP(ftpClient);
 						}
 					} catch (IOException ex) {
@@ -185,7 +185,7 @@ public class Main {
 			n.close();
 
 		} else
-			Database.say("See help for use of command");
+			Console.say("See help for use of command");
 
 	}
 
@@ -209,9 +209,9 @@ public class Main {
 					urlConn.connect();
 					final long endTime = System.currentTimeMillis();
 					if (urlConn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-						// Database.say("Time (ms) : " + (endTime - startTime));
-						Database.say("Ping to " + parm1 + " was success!");
-						Database.say("Response time was : "
+						// Console.say("Time (ms) : " + (endTime - startTime));
+						Console.say("Ping to " + parm1 + " was success!");
+						Console.say("Response time was : "
 								+ (endTime - startTime) + "ms");
 					}
 				} catch (IOException e) {
@@ -220,20 +220,20 @@ public class Main {
 			}
 			n.close();
 		} else
-			Database.say("Pong.");
+			Console.say("Pong.");
 	}
 
 	/**
 	 * Tells current directory
 	 */
 	private void td() {
-		Database.say(System.getProperty("user.dir"));
+		Console.say(System.getProperty("user.dir"));
 	}
 
 	/**
 	 * Used by the create file command
 	 */
-		
+
 	private void createFile(String input) {
 		String file_name = "file1";
 		String file_input = "";
@@ -268,7 +268,7 @@ public class Main {
 			PrintWriter out = new PrintWriter(file_name, "UTF-8");
 			out.println(file_input);
 			out.close();
-			Database.say("Created file with name : "
+			Console.say("Created file with name : "
 					+ file_name
 					+ (file_input.length() > 0 ? (" , with input : " + file_input)
 							: ""));
@@ -277,13 +277,13 @@ public class Main {
 		}
 		n.close();
 	}
-	
+
 	public void hello (String Message)
 	{
 		if (!Message.trim().equals("hello")) {
 			Scanner n = new Scanner(Message.substring("hello ".length()));
 
-			
+
 			System.out.println(n);
 		}
 	}
