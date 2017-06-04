@@ -6,3 +6,4 @@ ftpc SERVER USERNAME PASSWORD
 ram Gets total physical ram(not working right now)
 clear Clears the console
 end Exits the console
+osversion Display OS info.
