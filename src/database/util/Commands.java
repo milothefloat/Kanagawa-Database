@@ -15,6 +15,9 @@ public enum Commands
 	ram(
 		new ramCommand("ram")
 	),
+	osversion(
+		new OSVersionCommand("osversion")
+	),
 	// @formatter:off
 	clear(
 		new Command("clear") {
